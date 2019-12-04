@@ -1,20 +1,49 @@
 import React from "react";
-import { Icon } from 'antd';
+import { Icon } from "antd";
+
+import { connect } from 'react-redux'
+import { onDelCol } from '../actions';
 
 import "./column.sass";
-import ButtonAdd from '../button-add/buton-add';
-import Card from '../card/card';
+import ButtonAdd from "../button-add/buton-add";
+import Card from "../card/card";
 
 const Column = props => {
     return (
-        <div className='column'>
-            <header className='column__title'>Список завданfffffffffffffffffffffsdfsdfsdfь</header>
-            <Card />
-            <Card />
-            <ButtonAdd />
-            <Icon className="close-column-btn" type="close" />
+        <div className={!props.empty ? "column" : !props.isAddingColumn ? "column empty" : "column add-column"}>
+            {!props.empty ? (
+                <div>
+                    <header className='column__title'>{props.title}</header>
+                    {props.cards.map((card, index) => {
+                        // doesn't update!(maybe problem in props)
+                        return <Card label={card} key={index} colIndex={props.index} cardIndex={index} />
+                    })}
+                    <ButtonAdd text={"Add new card"} index={props.index} />
+                    <Icon onClick={() => props.onDelCol(props.index)} className='close-column-btn' type='close' />
+                </div>
+            ) : (
+                <div>
+                    {!props.isAddingColumn && (
+                        <div>
+                            <header className='column__title'>пвава</header>
+                            <Icon className='close-column-btn' type='close' />
+                        </div>
+                    )}
+                    <ButtonAdd
+                        text={props.isAddingColumn ? "Add new column" : "Add new card"}
+                        isAddingColumn={props.isAddingColumn && true}
+                        index={props.index}
+                    />
+                </div>
+            )}
         </div>
     );
 };
 
-export default Column;
+const mapDispatchToProps = dispatch => {
+    return {
+        onDelCol: colIndex => dispatch(onDelCol(colIndex))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Column);

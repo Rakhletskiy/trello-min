@@ -9,11 +9,26 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  width: auto;
+  overflow: auto;
+  white-space: nowrap
+}
+
+html {
+  overflow: auto;
+  width: auto;
+  white-space: nowrap
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap!important;
 }
 
 * {
