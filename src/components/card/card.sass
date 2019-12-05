@@ -1,16 +1,28 @@
 .card
     width: 100%
-    padding: 17px 10px
+    padding: 25px 20px
     background-color: #fff
     margin-bottom: 5px
     position: relative
-    word-wrap: break-word
+    word-wrap: break-word    
+    white-space: pre-wrap
+    font-weight: bold
+    
+.btn-wrapper
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-top: 10px
 
-.close-card-btn
+.card-btn
     position: absolute
     top: 5px
-    right: 5px
     color: darken(#ebecf0, 40%)
     cursor: pointer
     &:hover
         color: darken(#ebecf0, 60%)
+    &.card-edit
+        right: 25px
+    &.card-close
+        right: 5px
+        

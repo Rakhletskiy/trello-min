@@ -11,13 +11,11 @@ body {
   height: 100vh;
   width: auto;
   overflow: auto;
-  white-space: nowrap
+  white-space: nowrap;
 }
 
 html {
   overflow: auto;
-  width: auto;
-  white-space: nowrap
 }
 
 code {
@@ -25,11 +23,6 @@ code {
     monospace;
 }
 
-#root {
-  width: 100%;
-  height: 100%;
-  white-space: nowrap!important;
-}
 
 * {
   box-sizing: border-box;

@@ -2,7 +2,7 @@ import React from "react";
 import { Icon } from "antd";
 
 import { connect } from 'react-redux'
-import { onDelCol } from '../actions';
+import { onDelCol } from '../../actions';
 
 import "./column.sass";
 import ButtonAdd from "../button-add/buton-add";
@@ -15,7 +15,6 @@ const Column = props => {
                 <div>
                     <header className='column__title'>{props.title}</header>
                     {props.cards.map((card, index) => {
-                        // doesn't update!(maybe problem in props)
                         return <Card label={card} key={index} colIndex={props.index} cardIndex={index} />
                     })}
                     <ButtonAdd text={"Add new card"} index={props.index} />
