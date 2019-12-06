@@ -1,6 +1,4 @@
 # Trello (min version)
------
-
 Dashboard with drag'n'drop and local storage
 
 ## Features:
