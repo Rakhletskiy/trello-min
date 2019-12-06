@@ -20,7 +20,7 @@ export const onAddCard = (newCardText, colIndex) => (dispatch, getState) => {
   const newColumns = [...state.columns];
   newColumns.splice(colIndex, 1, updateColumn);
 
-  // set updated columns to storage
+  // set updated columns to local storage
   localStorage.setItem('columns', JSON.stringify(newColumns));
 
   return dispatch({
