@@ -15,7 +15,7 @@ const ButtonAdd = props => {
       <textarea onChange={e => props.addNewCardText(e.target.value)} rows='3' placeholder='type here...' autoFocus></textarea>
       <div className='adding-card-btn-wrapper'>
         <Button
-          onClick={() => (!props.isAddingColumn ? props.onAddCard(props.newCardText, props.index) : props.onAddCol(props.newCardText, setIsAdding))}
+          onClick={() => (!props.isAddingColumn ? props.onAddCard(props.newCardText, props.index, setIsAdding) : props.onAddCol(props.newCardText, setIsAdding))}
           className='adding-card-add'
           type='primary'
         >
@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddCard: (newCardText, index) => dispatch(onAddCard(newCardText, index)),
+    onAddCard: (newCardText, index, setIsAdding) => dispatch(onAddCard(newCardText, index, setIsAdding)),
     addNewCardText: text => dispatch(addNewCardText(text)),
     onAddCol: (text, setIsAdding) => dispatch(onAddCol(text, setIsAdding))
   };

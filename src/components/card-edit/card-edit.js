@@ -17,7 +17,6 @@ const CardEditBlock = props => {
   }, []);
 
   return (
-    
     <div className='card-edit-block'>
       <textarea ref={measuredRef} onChange={e => setInputText(e.target.value)} value={inputText} rows='3'></textarea>
       <div className='btn-wrapper'>
@@ -42,7 +41,6 @@ const CardEditBlock = props => {
         />
       </div>
     </div>
-    
   );
 };
 
