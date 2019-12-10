@@ -1,3 +1,25 @@
+export const setInitialColumns = () => dispatch => {
+  // define initial columns
+  const initialColumns = [
+    { title: 'Example column 1', cards: ['example card 1.1 (draggable)', 'example card 1.2 (draggable)'] },
+    { title: 'Example column 2', cards: ['example card 2.1 (draggable)'] }
+  ];
+
+  // get current columns for check
+  const currColumns = localStorage.getItem('columns');
+
+  if (currColumns == null) {
+    // set initial columns in localStorage
+    localStorage.setItem('columns', JSON.stringify(initialColumns));
+
+    // set initial columns in redux
+    return dispatch({
+      type: 'SET_INITIAL_COLUMNS',
+      columns: initialColumns
+    });
+  }
+};
+
 export const fetchData = () => dispatch => {
   const columns = localStorage.getItem('columns');
   return dispatch({
@@ -12,22 +34,19 @@ export const onAddCol = (colTitle, setIsAdding) => (dispatch, getState) => {
   setIsAdding(false);
 
   // copy columns array
-  var newColumns;
-
-  if (state.columns !== null) {
-    newColumns = [...state.columns];
-  } else {
-    newColumns = [];
-  }
+  let newColumns;
+  state.columns !== null ? newColumns = [...state.columns] : newColumns = [];
 
   // push new column in temporary array
-  newColumns.push({ title: colTitle, cards: [] });
+  colTitle !== '' && colTitle !== null ? newColumns.push({ title: colTitle, cards: [] }) : alert('Set column name please');
 
+  // set new columns array to local storage
   localStorage.setItem('columns', JSON.stringify(newColumns));
 
   return dispatch({
     type: 'ADD_COLUMN',
-    columns: newColumns
+    columns: newColumns,
+    newCardText: ''
   });
 };
 
@@ -47,5 +66,3 @@ export const onDelCol = colIndex => (dispatch, getState) => {
     columns: newColumns
   });
 };
-
-

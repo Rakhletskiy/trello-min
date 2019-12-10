@@ -5,6 +5,11 @@ const initialState = {
 
 function trello(state = initialState, action) {
   switch (action.type) {
+    case 'SET_INITIAL_COLUMNS':
+      return {
+        ...state,
+        columns: action.columns
+      }
     case 'FETCH_DATA':
       return {
         ...state,
@@ -29,7 +34,8 @@ function trello(state = initialState, action) {
     case 'ADD_COLUMN':
       return {
         ...state,
-        columns: action.columns
+        columns: action.columns,
+        newCardText: action.newCardText
       };
     case 'DELETE_COLUMN':
       return {

@@ -3,13 +3,14 @@ import './app.sass';
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import { fetchData, reorderCards } from '../../actions';
+import { fetchData, reorderCards, setInitialColumns } from '../../actions';
 
 import Column from '../column/column';
 
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchData();
+    this.props.setInitialColumns();
   }
 
   onDragEnd = result => {
@@ -49,7 +50,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchData: () => dispatch(fetchData()),
-    reorderCards: ({ source, destination }) => dispatch(reorderCards({ source, destination }))
+    reorderCards: ({ source, destination }) => dispatch(reorderCards({ source, destination })),
+    setInitialColumns: () => dispatch(setInitialColumns())
   };
 };
 

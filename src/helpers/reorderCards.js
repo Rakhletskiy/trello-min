@@ -1,4 +1,4 @@
-export default ({ state, source, destination }) => {
+export default ({ columns, source, destination }) => {
   const { index: sourceCardIndex, droppableId: sourceId } = source;
   const { index: destinationCardIndex, droppableId: destinationId } = destination;
 
@@ -6,22 +6,22 @@ export default ({ state, source, destination }) => {
   const sourceColumnIndex = parseInt(sourceId.replace('column-', ''));
   const destinationColumnIndex = parseInt(destinationId.replace('column-', ''));
 
-  return state.map((item, currentColumnIndex) => {
+  return columns.map((column, currentColumnIndex) => {
     if (destinationColumnIndex === currentColumnIndex) {
-      // get active card
-      const [sourceCard] = state[sourceColumnIndex].cards.splice(sourceCardIndex, 1);
+      // get source card
+      const [sourceCard] = columns[sourceColumnIndex].cards.splice(sourceCardIndex, 1);
 
-      // get destination cards array
-      const destinationCards = Array.from(state[destinationColumnIndex].cards);
+      // get destination array of cards
+      const destinationCards = Array.from(columns[destinationColumnIndex].cards);
 
-      // put source card in the destination array
+      // put source card in destination array
       // to the right place
       destinationCards.splice(destinationCardIndex, 0, sourceCard);
 
       // update cards array
-      item.cards = destinationCards;
+      column.cards = destinationCards;
     }
 
-    return item;
+    return column;
   });
 };

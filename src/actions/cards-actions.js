@@ -9,10 +9,8 @@ export const onAddCard = (newCardText, colIndex) => (dispatch, getState) => {
   let updateColumn = state.columns[colIndex];
   let newCards = updateColumn.cards;
 
-  // push new card to cards array
-  if (newCardText !== '' && newCardText !== null) {
-    newCards.push(newCardText);
-  }
+  // push new card to temporary cards array
+  newCardText !== '' && newCardText !== null ? newCards.push(newCardText) : alert('Set card name please');
 
   updateColumn.cards = newCards;
 
@@ -73,7 +71,7 @@ export const reorderCards = ({ source, destination }) => (dispatch, getState) =>
 
   // get reordered columns array
   const newColumns = reorderCardsHelper({
-    state: state.columns,
+    columns: state.columns,
     source,
     destination
   });
@@ -86,3 +84,4 @@ export const reorderCards = ({ source, destination }) => (dispatch, getState) =>
     columns: newColumns
   });
 };
+
